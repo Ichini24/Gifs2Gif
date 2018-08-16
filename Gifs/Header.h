@@ -10,4 +10,4 @@ void tic() {
 void toc() {
 	double tt_toc = (cv::getTickCount() - tt_tic) / (cv::getTickFrequency());
 	printf("toc: %4.3f sn\n", tt_toc);
-}
+} 

@@ -1,7 +1,7 @@
 #include "Header.h"
 
 int main()
-{
+{ 
 	std::string path = "D:\\giffs\\new\\";
 	cv::VideoCapture tc(path + std::to_string(0) + ".gif");
 	cv::Mat frame;
