@@ -5,6 +5,6 @@
 int main()
 {
 	clip();
-
+	//std::cout << 0x3b << std::endl;
 	return 1;
 }

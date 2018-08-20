@@ -194,43 +194,43 @@ void gluevideos()
 
 void clip()
 {
-	std::ofstream out("D:\\giffs\\new\\out.gif", std::ios_base::binary);
-	std::ifstream f1("D:\\giffs\\new\\0.gif", std::ios_base::binary);
-	std::ifstream f2("D:\\giffs\\new\\1.gif", std::ios_base::binary);
+	std::ofstream out("D:\\giffs\\new\\out.gif", std::ios::binary);
+	std::ifstream f1("D:\\giffs\\new\\0.gif", std::ios::binary);
+	std::ifstream f2("D:\\giffs\\new\\1.gif", std::ios::binary);
 
 
-	out << f1.rdbuf() << f2.rdbuf();
 
-	//int size1 = f1.tellg();
-	//f1.seekg(0, std::ios::beg);
-	//std::vector<char> buffer1, buffer2, buffer3;
-	//buffer1.resize(size1);
-	//f1.read(buffer1.data(), size1);
 
-	//int size2 = f2.tellg();
-	//f2.seekg(0, std::ios::beg);
-	//buffer2.resize(size2);
-	//f2.read(buffer2.data(), size2);
+	int size1 = f1.tellg();
+	f1.seekg(0, std::ios::beg);
+	std::vector<char> buffer1, buffer2;
+	buffer1.resize(size1);
+	f1.read(buffer1.data(), size1);
 
-	//int size3 = size1 + size2 - 15;
-	//buffer3.resize(size3);
+	int size2 = f2.tellg();
+	f2.seekg(0, std::ios::beg);
+	buffer2.resize(size2);
+	f2.read(buffer2.data(), size2);
 
-	//for (int i = 0; i<buffer1.size() - 2; i++)
-	//{
-	//	buffer3[i] = buffer1[i];
-	//}
+	int size3 = size1 + size2 - 14;
 
-	//for (int i = 13; i < buffer2.size(); i++)
-	//{
-	//	buffer3[i - 13 + size1 - 2] = buffer2[i];
-	//}
 
-	//char *buf = new char[buffer3.size()];
-	//for (int i = 0; i < buffer3.size(); i++)
-	//{
-	//	buf[i] = buffer3[i];
-	//}
 
-	//std::cout << "size1: " << buffer1.size() << "\nsize2: " << buffer2.size() << "\nsize3: " << buffer3.size() << std::endl;
-	//out.write(buf, sizeof buf);
+	char *buf = new char[size3];
+	char *buf1;
+
+	for (int i = 0; i<buffer1.size() - 1; i++)
+	{
+		buf[i] = buffer1[i];
+	}
+
+	for (int i = 13; i < buffer2.size(); i++)
+	{
+		buf[i - 13 + size1 - 1] = buffer2[i];
+	}
+
+
+
+	std::cout << "size1: " << buffer1.size() << "\nsize2: " << buffer2.size() << "\nsize3: " << size3 << std::endl;
+	out.write(buf, sizeof buf);
 }
